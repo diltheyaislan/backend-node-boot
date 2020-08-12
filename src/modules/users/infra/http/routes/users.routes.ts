@@ -15,6 +15,7 @@ const userAvatarController = new UserAvatarController();
 
 usersRouter.post(
   '/',
+  ensureAuthenticated,
   celebrate({
     [Segments.BODY]: {
       name: Joi.string().required(),
