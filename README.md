@@ -4,7 +4,7 @@ Node.JS with Express API for a new back-end project with basic functionality alr
 
 ## Getting started
 
-Configure the **.env** and **ormconfig.json** file based on **.env.example** and **ormconfig.example.json**
+Configure the **.env** and **ormconfig.json** files based on **.env.example** and **ormconfig.example.json**
 
 ## Using HTTPS
 
@@ -19,3 +19,9 @@ Run `yarn seed:run` to execute all seeder
 ## Build
 
 Run `yarn build`
+
+Copy *tmp* and *uploads* folders and *.env* and *ormconfig.json* files to application directory
+
+## Start application
+
+Run `node .\app\shared\infra\http\server.js`
