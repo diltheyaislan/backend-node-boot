@@ -1,6 +1,7 @@
 import { injectable, inject } from 'tsyringe';
 import path from 'path';
 
+import locale from '@config/locales';
 import AppError from '@shared/errors/AppError';
 
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
@@ -26,7 +27,7 @@ class SendForgotPasswordEmailService {
     const user = await this.usersRepository.findByEmail(email);
 
     if (!user) {
-      throw new AppError('User does not exist.');
+      throw new AppError(locale.resources.users.userNotFound, 404);
     }
 
     const { token } = await this.userTokensRepository.generate(user.id);
@@ -43,7 +44,7 @@ class SendForgotPasswordEmailService {
         name: user.name,
         email: user.email,
       },
-      subject: '[GoBarber] Recuperação de senha',
+      subject: 'Reset Password',
       templateData: {
         file: forgotPasswordTemplate,
         variables: {

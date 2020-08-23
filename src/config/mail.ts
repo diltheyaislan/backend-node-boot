@@ -14,7 +14,7 @@ export default {
   defaults: {
     from: {
       email: 'emailSES@aws.com',
-      name: 'GoBarber',
+      name: 'App',
     },
   },
 } as IMailConfig;

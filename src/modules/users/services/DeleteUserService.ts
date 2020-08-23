@@ -2,18 +2,11 @@ import { injectable, inject } from 'tsyringe';
 
 import locale from '@config/locales';
 import AppError from '@shared/errors/AppError';
-
-import User from '@modules/users/infra/typeorm/entities/User';
-import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import IStorageProvider from '@shared/container/providers/StorageProvider/models/IStorageProvider';
-
-interface IRequest {
-  user_id: string;
-  avatarFilename: string;
-}
+import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 
 @injectable()
-class UpdateUserAvatarService {
+class DeleteUserService {
   constructor(
     @inject('UsersRepository')
     private usersRepository: IUsersRepository,
@@ -22,8 +15,8 @@ class UpdateUserAvatarService {
     private storageProvider: IStorageProvider,
   ) {}
 
-  public async execute({ user_id, avatarFilename }: IRequest): Promise<User> {
-    const user = await this.usersRepository.findById(user_id);
+  public async execute(id: string): Promise<void> {
+    const user = await this.usersRepository.findById(id);
 
     if (!user) {
       throw new AppError(locale.resources.users.userNotFound, 404);
@@ -33,14 +26,8 @@ class UpdateUserAvatarService {
       await this.storageProvider.deleteFile(user.avatar);
     }
 
-    const filename = await this.storageProvider.saveFile(avatarFilename);
-
-    user.avatar = filename;
-
-    await this.usersRepository.save(user);
-
-    return user;
+    await this.usersRepository.delete(user.id);
   }
 }
 
-export default UpdateUserAvatarService;
+export default DeleteUserService;

@@ -17,4 +17,6 @@ sessionsRouter.post(
   sessionsController.create,
 );
 
+sessionsRouter.post('/refresh', sessionsController.refresh);
+
 export default sessionsRouter;

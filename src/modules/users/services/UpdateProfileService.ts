@@ -1,6 +1,8 @@
 import { injectable, inject } from 'tsyringe';
 
+import locale from '@config/locales';
 import AppError from '@shared/errors/AppError';
+
 import User from '@modules/users/infra/typeorm/entities/User';
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import IHashProvider from '@modules/users/providers/HashProvider/models/IHashProvider';
@@ -33,22 +35,20 @@ class UpdateProfileService {
     const user = await this.usersRepository.findById(user_id);
 
     if (!user) {
-      throw new AppError('User not found');
+      throw new AppError(locale.resources.users.userNotFound, 404);
     }
 
     const userWithUpdatedEmail = await this.usersRepository.findByEmail(email);
 
     if (userWithUpdatedEmail && userWithUpdatedEmail.id !== user.id) {
-      throw new AppError('E-mail already in use');
+      throw new AppError(locale.validation.emailAlreadyUsed, 409);
     }
 
     user.name = name;
     user.email = email;
 
     if (password && !old_password) {
-      throw new AppError(
-        'You need to inform the old password to set a new password',
-      );
+      throw new AppError(locale.validation.oldPasswordIsRequired);
     }
 
     if (password && old_password) {
@@ -58,7 +58,7 @@ class UpdateProfileService {
       );
 
       if (!checkOldPassword) {
-        throw new AppError('Old password does not match');
+        throw new AppError(locale.validation.oldPasswordNotMatch);
       }
 
       user.password = await this.hashProvider.generateHash(password);
