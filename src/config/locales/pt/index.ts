@@ -1,4 +1,10 @@
 export default {
+  app: {
+    errors: {
+      internalServer: 'Erro interno de servidor',
+    },
+  },
+
   /* Middlewares */
   middlewares: {
     ensureAuthenticated: {
@@ -25,6 +31,9 @@ export default {
     user: 'Usuário',
     users: {
       alreadyActivated: 'Usuário já ativo',
+      requestPasswordTokenExpired:
+        'Token de solicitação de mudança de senha expirou',
+      userNotFound: 'Usuário não encontrado',
     },
   },
 
@@ -35,6 +44,9 @@ export default {
     invalidValue: 'Valor inválido',
     emailAlreadyUsed: 'Endereço de e-mail já está em uso',
     invalidCurrentPassword: 'Senha atual inválida',
+    oldPasswordIsRequired:
+      'Senha antiga é necessária para definir a nova senha',
+    oldPasswordNotMatch: 'Senha antiga não confere',
     onlyImageJpgPngAccepted: 'Somente imagens JPG ou PNG são aceitas',
   },
 };

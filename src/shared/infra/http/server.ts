@@ -41,7 +41,7 @@ app.use((err: Error, request: Request, response: Response, _: NextFunction) => {
       case '22P02':
         return response
           .status(406)
-          .json({ status: 'error', messsage: locale.validation.invalidUUID });
+          .json({ status: 'error', message: locale.validation.invalidUUID });
     }
   }
 
@@ -49,7 +49,7 @@ app.use((err: Error, request: Request, response: Response, _: NextFunction) => {
 
   return response.status(500).json({
     status: 'error',
-    messsage: 'Internal server error',
+    messsage: locale.app.errors.internalServer,
   });
 });
 
