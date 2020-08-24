@@ -36,12 +36,23 @@ export default {
         'Token de solicitação de mudança de senha expirou',
       userNotFound: 'Usuário não encontrado',
     },
+    permission: 'Permissão',
+    permissions: {
+      alreadyExists: 'Permissão já existe',
+      notFound: 'Permissão não encontrada',
+    },
+    role: 'Função',
+    roles: {
+      alreadyActivated: 'Função já existe',
+      notFound: 'Função não encontrada',
+    },
   },
 
   /* Validation */
   validation: {
     invalidUUID: 'Valor UUID inválido',
     resourceNotFound: ':resource não encontrado',
+    alreadyExists: 'Item já existe',
     invalidValue: 'Valor inválido',
     emailAlreadyUsed: 'Endereço de e-mail já está em uso',
     invalidCurrentPassword: 'Senha atual inválida',
