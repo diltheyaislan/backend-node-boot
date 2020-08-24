@@ -36,6 +36,10 @@ class AuthenticateUserService {
       throw new AppError(locale.auth.invalidCredentials, 401);
     }
 
+    if (!user.active) {
+      throw new AppError(locale.auth.inactiveAccount, 403);
+    }
+
     const passwordMatched = await this.hashProvider.compareHash(
       password,
       user.password,

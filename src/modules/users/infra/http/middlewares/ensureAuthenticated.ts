@@ -1,9 +1,11 @@
 import { Request, Response, NextFunction } from 'express';
+import { container } from 'tsyringe';
 import { verify } from 'jsonwebtoken';
 
 import locale from '@config/locales';
 import authConfig from '@config/auth';
 import AppError from '@shared/errors/AppError';
+import CheckUserActiveService from '@modules/users/services/CheckUserActiveService';
 
 interface ITokenPayload {
   iat: number;
@@ -11,11 +13,11 @@ interface ITokenPayload {
   sub: string;
 }
 
-export default function ensureAuthenticated(
+export default async function ensureAuthenticated(
   request: Request,
   _response: Response,
   next: NextFunction,
-): void {
+): Promise<void> {
   const authHeader = request.headers.authorization;
 
   if (!authHeader) {
@@ -35,8 +37,20 @@ export default function ensureAuthenticated(
       id: sub,
     };
 
+    const checkUserActive = container.resolve(CheckUserActiveService);
+
+    const userActive = await checkUserActive.execute(sub);
+
+    if (!userActive) {
+      throw new AppError(locale.auth.inactiveAccount, 403);
+    }
+
     return next();
-  } catch {
+  } catch (error) {
+    if (error.statusCode) {
+      throw new AppError(error.message, error.statusCode);
+    }
+
     throw new AppError(
       locale.middlewares.ensureAuthenticated.InvalidJWTToken,
       401,

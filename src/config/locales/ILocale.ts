@@ -16,6 +16,7 @@ export default interface ILocale {
   /* Auth */
   auth: {
     invalidCredentials: string;
+    inactiveAccount: string;
   };
 
   /* Mail */

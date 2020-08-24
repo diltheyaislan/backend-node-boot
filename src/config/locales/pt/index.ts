@@ -16,6 +16,7 @@ export default {
   /* Auth */
   auth: {
     invalidCredentials: 'Crendenciais inválidas',
+    inactiveAccount: 'Conta inativa',
   },
 
   /* Mail */
