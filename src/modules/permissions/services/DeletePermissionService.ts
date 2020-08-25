@@ -2,7 +2,6 @@ import { injectable, inject } from 'tsyringe';
 
 import locale from '@config/locales';
 import AppError from '@shared/errors/AppError';
-import IStorageProvider from '@shared/container/providers/StorageProvider/models/IStorageProvider';
 import IPermissionsRepository from '@modules/permissions/repositories/IPermissionsRepository';
 
 @injectable()
@@ -10,9 +9,6 @@ class DeletePermissionService {
   constructor(
     @inject('PermissionsRepository')
     private permissionsRepository: IPermissionsRepository,
-
-    @inject('StorageProvider')
-    private storageProvider: IStorageProvider,
   ) {}
 
   public async execute(id: string): Promise<void> {
