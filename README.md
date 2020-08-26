@@ -16,6 +16,10 @@ Run `yarn seed:create MySeeder` to create a new seeder file in *.\src\shared\inf
 
 Run `yarn seed:run` to execute all seeder
 
+## ACL Middleware
+
+Use *.\src\modules\permissions\infra\http\middlewares\hasPermission* on routes to restrict access
+
 ## Build
 
 Run `yarn build`
