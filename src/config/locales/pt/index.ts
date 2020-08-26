@@ -11,6 +11,9 @@ export default {
       JWTtokenMissing: 'O token JWT não foi encontrado',
       InvalidJWTToken: 'O token JWT é inválido',
     },
+    hasPermission: {
+      accessDenied: 'Acesso negado',
+    },
   },
 
   /* Auth */

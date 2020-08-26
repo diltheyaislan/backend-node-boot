@@ -8,6 +8,7 @@ import {
   ManyToMany,
   JoinTable,
 } from 'typeorm';
+import User from '@modules/users/infra/typeorm/entities/User';
 import Permission from './Permission';
 
 @Entity('roles')
@@ -34,6 +35,20 @@ class Role {
     },
   })
   permissions: Permission[];
+
+  @ManyToMany(type => User, { eager: true })
+  @JoinTable({
+    name: 'users_roles',
+    joinColumn: {
+      name: 'role_id',
+      referencedColumnName: 'id',
+    },
+    inverseJoinColumn: {
+      name: 'user_id',
+      referencedColumnName: 'id',
+    },
+  })
+  users: User[];
 
   @CreateDateColumn()
   created_at: Date;

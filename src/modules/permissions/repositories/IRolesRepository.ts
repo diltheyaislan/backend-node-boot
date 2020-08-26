@@ -1,6 +1,7 @@
 import Role from '@modules/permissions/infra/typeorm/entities/Role';
 import ICreateRoleDTO from '@modules/permissions/dtos/ICreateRoleDTO';
 import Permission from '@modules/permissions/infra/typeorm/entities/Permission';
+import User from '@modules/users/infra/typeorm/entities/User';
 
 export default interface IRolesRepository {
   find(): Promise<Role[]>;
@@ -10,4 +11,5 @@ export default interface IRolesRepository {
   save(role: Role): Promise<Role>;
   delete(id: string): Promise<void>;
   savePermissions(role: Role, permissions: Permission[]): Promise<Role>;
+  saveUsers(role: Role, users: User[]): Promise<Role>;
 }

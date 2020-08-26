@@ -11,6 +11,9 @@ export default interface ILocale {
       JWTtokenMissing: string;
       InvalidJWTToken: string;
     };
+    hasPermission: {
+      accessDenied: string;
+    };
   };
 
   /* Auth */

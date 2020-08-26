@@ -37,6 +37,12 @@ class User {
   @UpdateDateColumn()
   updated_at: Date;
 
+  @Expose()
+  roles: string[];
+
+  @Expose()
+  permissions: string[];
+
   @Expose({ name: 'avatar_url' })
   get avatarUrl(): string | null {
     if (!this.avatar) {

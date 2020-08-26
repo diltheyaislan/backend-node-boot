@@ -8,6 +8,7 @@ import ShowRoleService from '@modules/permissions/services/ShowRoleService';
 import UpdateRoleService from '@modules/permissions/services/UpdateRoleService';
 import DeleteRoleService from '@modules/permissions/services/DeleteRoleService';
 import SaveRolePermissionsService from '@modules/permissions/services/SaveRolePermissionsService';
+import SaveRoleUsersService from '@modules/permissions/services/SaveRoleUsersService';
 
 export default class RolesController {
   public async index(_request: Request, response: Response): Promise<Response> {
@@ -79,6 +80,24 @@ export default class RolesController {
     const role = await saveRolePermissions.execute({
       id,
       permissions,
+    });
+
+    return response.json(classToClass(role));
+  }
+
+  public async saveUsers(
+    request: Request,
+    response: Response,
+  ): Promise<Response> {
+    const { id } = request.params;
+
+    const { users } = request.body;
+
+    const saveRoleUsers = container.resolve(SaveRoleUsersService);
+
+    const role = await saveRoleUsers.execute({
+      id,
+      users,
     });
 
     return response.json(classToClass(role));

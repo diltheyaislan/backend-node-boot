@@ -5,6 +5,7 @@ import ICreateRoleDTO from '@modules/permissions/dtos/ICreateRoleDTO';
 
 import Role from '@modules/permissions/infra/typeorm/entities/Role';
 import Permission from '@modules/permissions/infra/typeorm/entities/Permission';
+import User from '@modules/users/infra/typeorm/entities/User';
 
 class FakeRolesRepository implements IRolesRepository {
   private roles: Role[] = [];
@@ -50,6 +51,10 @@ class FakeRolesRepository implements IRolesRepository {
   }
 
   async savePermissions(role: Role, _permissions: Permission[]): Promise<Role> {
+    return role;
+  }
+
+  async savePUsers(role: Role, _users: User[]): Promise<Role> {
     return role;
   }
 }

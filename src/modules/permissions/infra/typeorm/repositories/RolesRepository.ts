@@ -5,6 +5,7 @@ import ICreateRoleDTO from '@modules/permissions/dtos/ICreateRoleDTO';
 
 import Role from '@modules/permissions/infra/typeorm/entities/Role';
 import Permission from '@modules/permissions/infra/typeorm/entities/Permission';
+import User from '@modules/users/infra/typeorm/entities/User';
 
 class RolesRepository implements IRolesRepository {
   private ormRepository: Repository<Role>;
@@ -51,6 +52,12 @@ class RolesRepository implements IRolesRepository {
     role.permissions = permissions;
     const roleWithPermissions = await this.ormRepository.save(role);
     return roleWithPermissions;
+  }
+
+  async saveUsers(role: Role, users: User[]): Promise<Role> {
+    role.users = users;
+    const roleWithUsers = await this.ormRepository.save(role);
+    return roleWithUsers;
   }
 }
 

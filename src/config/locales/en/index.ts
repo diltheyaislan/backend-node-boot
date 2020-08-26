@@ -11,6 +11,9 @@ export default {
       JWTtokenMissing: 'JWT token is missing',
       InvalidJWTToken: 'JWT token is invalid',
     },
+    hasPermission: {
+      accessDenied: 'Access denied',
+    },
   },
 
   /* Auth */
