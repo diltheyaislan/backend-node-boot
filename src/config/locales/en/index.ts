@@ -11,6 +11,9 @@ export default {
       JWTtokenMissing: 'JWT token is missing',
       InvalidJWTToken: 'JWT token is invalid',
     },
+    hasPermission: {
+      accessDenied: 'Access denied',
+    },
   },
 
   /* Auth */
@@ -35,12 +38,23 @@ export default {
       requestPasswordTokenExpired: 'Password change request token expired',
       userNotFound: 'User not found',
     },
+    permission: 'Permission',
+    permissions: {
+      alreadyExists: 'Permission already exists',
+      notFound: 'Permission not found',
+    },
+    role: 'Role',
+    roles: {
+      alreadyActivated: 'Role already exists',
+      notFound: 'Role not found',
+    },
   },
 
   /* Validation */
   validation: {
     invalidUUID: 'UUID value is invalid',
     resourceNotFound: ':resource not found',
+    alreadyExists: 'Already exists',
     invalidValue: 'Invalid value',
     emailAlreadyUsed: 'E-mail address is already in use',
     invalidCurrentPassword: 'Ccurrent password is invalid',

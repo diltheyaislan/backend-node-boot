@@ -29,6 +29,7 @@
       "no-useless-constructor": "off",
       "@typescript-eslint/camelcase": "off",
       "default-case": "off",
+      "no-param-reassign": "off",
       "@typescript-eslint/no-unused-vars": ["error", {
         "argsIgnorePattern": "_"
       }],

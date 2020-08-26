@@ -11,6 +11,9 @@ export default interface ILocale {
       JWTtokenMissing: string;
       InvalidJWTToken: string;
     };
+    hasPermission: {
+      accessDenied: string;
+    };
   };
 
   /* Auth */
@@ -35,12 +38,23 @@ export default interface ILocale {
       requestPasswordTokenExpired: string;
       userNotFound: string;
     };
+    permission: string;
+    permissions: {
+      alreadyExists: string;
+      notFound: string;
+    };
+    role: string;
+    roles: {
+      alreadyExists: string;
+      notFound: string;
+    };
   };
 
   /* Validation */
   validation: {
     invalidUUID: string;
     resourceNotFound: string;
+    alreadyExists: string;
     invalidValue: string;
     emailAlreadyUsed: string;
     invalidCurrentPassword: string;
